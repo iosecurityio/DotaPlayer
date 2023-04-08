@@ -6,6 +6,7 @@ import requests
 from colorama import Fore, init
 init(autoreset=True)    # Turns on colored terminal output; resets each line
 
+# Set your player name and ID here
 player_name = "dendi" # Arbitrary name you want to give the player
 player_id = "70388657"  # The actual player ID from an Open DOTA profile
 
@@ -18,8 +19,8 @@ class DotaPlayer:
     - https://opendota.com
 
     Parameters:
-    name -> string input of a name you want to assign
-    pid -> the unique player id from opendota
+    :param name: string input of a name you want to assign
+    :param pid: the unique player id from opendota
     """
 
     API_URL = "http://api.opendota.com/api/"
@@ -173,5 +174,7 @@ if __name__ == "__main__":
         player = DotaPlayer(player_name, player_id)
         player.get_matches(5)
         player.get_mmr()
+        player.get_wordcloud()
+        player.get_wordcount(player.wordcloud, "gg")
     except Exception as e:
         print(f"No worky: {e}")
